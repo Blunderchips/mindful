@@ -42,8 +42,10 @@ export class Tab3Page implements OnInit {
         // }],
         data: [
           {
-            type: 'area',
-            dataPoints
+            type: 'spline',
+            dataPoints,
+            markerSize: 5,
+            xValueType: 'dateTime'
           }]
       });
 

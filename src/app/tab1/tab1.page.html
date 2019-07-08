@@ -8,42 +8,15 @@
 
 <ion-content>
 
-  <!-- <div>
-    <ion-fab>
-      <ion-fab-button *ngFor="let mood of moods" (click)="postMood(mood)">
+  <ul class='circle-container'>
+
+    <li *ngFor="let mood of moods">
+      <ion-fab-button (click)="postMood(mood)">
+        <ion-ripple-effect></ion-ripple-effect>
         <ion-icon name="{{mood.icon}}"></ion-icon>
-        {{ mood.mood }}
       </ion-fab-button>
-    </ion-fab>
-  </div> -->
+    </li>
 
-  <div class='circle-container'>
-    <a href='#' class='center'>
-      <img src='image.jpg'>
-    </a>
+  </ul>
 
-    <a href='#' class='deg0'>
-      <img src='image.jpg'>
-    </a>
-
-    <a href='#' class='deg45'>
-      <img src='image.jpg'>
-    </a>
-
-    <a href='#' class='deg135'>
-      <img src='image.jpg'>
-    </a>
-
-    <a href='#' class='deg180'>
-      <img src='image.jpg'>
-    </a>
-
-    <a href='#' class='deg225'>
-      <img src='image.jpg'>
-    </a>
-
-    <a href='#' class='deg315'>
-      <img src='image.jpg'>
-    </a>
-  </div>
 </ion-content>
