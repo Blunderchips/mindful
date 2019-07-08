@@ -30,7 +30,7 @@
       <tbody>
         <tr *ngFor="let log of logs | async">
           <td>
-            {{ getDate(log.date) }}
+            {{ getToString(getDate(log.date)) }}
           </td>
           <td>
             {{ log.mood }}

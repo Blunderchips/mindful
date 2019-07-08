@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from '../canvasjs.min';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -24,7 +23,7 @@ export class Tab3Page implements OnInit {
     this.logs.subscribe((logs: any) => {
       const dataPoints = [];
 
-      logs.forEach(i => {
+      logs.forEach((i: { date: string; value: number; }) => {
         dataPoints.push({
           x: this.getDate(i.date),
           y: i.value
@@ -54,5 +53,11 @@ export class Tab3Page implements OnInit {
 
   getDate(ISOString: string): Date {
     return new Date(ISOString);
+  }
+
+  getToString(date: Date): string {
+    return date.getFullYear() + '-' + (date.getMonth() + 1)
+      + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes()
+      + ':' + date.getSeconds();
   }
 }
