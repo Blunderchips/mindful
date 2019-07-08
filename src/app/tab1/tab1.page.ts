@@ -12,37 +12,48 @@ export class Tab1Page implements OnInit {
   moods = [
     {
       mood: 'happy',
-      icon: 'happy'
+      icon: 'happy',
+      value: 5
     },
     {
       mood: 'sad',
-      icon: 'sad'
+      icon: 'sad',
+      value: 3
     },
     {
       mood: 'depressed',
-      icon: 'sad'
+      icon: 'sad',
+      value: 1
     },
     {
       mood: 'tierd',
-      icon: 'sad'
+      icon: 'sad',
+      value: 2
     }
   ];
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(
+    private afs: AngularFirestore
+  ) { }
 
   ngOnInit(): void {
-
   }
 
-  postMood(mood: string) {
+  postMood(mood: any) {
     let uid = this.afs.createId();
+
+    let obj = {
+      user: this.userUid,
+      uid: uid,
+      mood: mood.mood,
+      date: new Date().toISOString(),
+      value: mood.value
+    };
+
+    console.log(obj);
+
     this.afs.collection(this.userUid + '_data').add(
-      {
-        user: this.userUid,
-        uid: uid,
-        mood: mood,
-        date: new Date()
-      }
+      obj
     );
   }
 }

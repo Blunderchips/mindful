@@ -10,8 +10,8 @@
 
   <div>
     <ion-fab>
-      <ion-fab-button *ngFor="let mood of moods">
-        <ion-icon name="{{mood.icon}}" (click)="postMood(mood.mood)"></ion-icon>
+      <ion-fab-button *ngFor="let mood of moods" (click)="postMood(mood)">
+        <ion-icon name="{{mood.icon}}"></ion-icon>
         {{ mood.mood }}
       </ion-fab-button>
     </ion-fab>
