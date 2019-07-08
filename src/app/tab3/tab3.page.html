@@ -9,7 +9,11 @@
 <ion-content>
   <div class="graph" id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
 
-  <div>
+  <br>
+  <ion-item-divider></ion-item-divider>
+  <br>
 
+  <div *ngFor="let log of logs | async">
+    <pre>{{ log }}</pre>
   </div>
 </ion-content>

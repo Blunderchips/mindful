@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from '../canvasjs.min';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-tab3',
@@ -9,9 +10,14 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class Tab3Page implements OnInit {
 
+  logs: any;
+  userUid = '1234';
+
   constructor(
     private afs: AngularFirestore
-  ) { }
+  ) {
+    this.logs = this.afs.collection(this.userUid + '_data').valueChanges();
+  }
 
   ngOnInit() {
     let dataPoints = [];
