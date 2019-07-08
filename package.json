@@ -1,17 +1,18 @@
 {
   "name": "mindful",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "private": true,
+  "description": "An Ionic project",
   "homepage": "https://ionicframework.com/",
+  "author": "Ionic Framework",
   "scripts": {
+    "build": "ng build",
+    "e2e": "ng e2e",
+    "lint": "ng lint",
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "test": "ng test"
   },
-  "private": true,
   "dependencies": {
     "@angular/common": "^7.2.2",
     "@angular/core": "^7.2.2",
@@ -56,6 +57,5 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.17.0",
     "typescript": "~3.1.6"
-  },
-  "description": "An Ionic project"
+  }
 }
