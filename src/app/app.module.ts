@@ -13,6 +13,11 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { firebaseConfig } from './credentials';
 
+import * as PlotlyJS from 'plotly.js/dist/plotly.js';
+import { PlotlyModule } from 'angular-plotly.js';
+
+PlotlyModule.plotlyjs = PlotlyJS;
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -21,7 +26,8 @@ import { firebaseConfig } from './credentials';
     IonicModule.forRoot(),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    PlotlyModule
   ],
   providers: [
     StatusBar,
