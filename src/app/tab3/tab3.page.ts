@@ -16,33 +16,31 @@ export class Tab3Page implements OnInit {
   constructor(
     private afs: AngularFirestore
   ) {
-    this.logs = this.afs.collection(this.userUid + '_data').valueChanges();
-
-    this.logs.subscribe(logs => {
-      logs.forEach(i => {
-        console.log(i.date, new Date(i.date));
-      });
-    });
+    this.logs = this.afs.collection(this.userUid + '_data',
+      ref => ref.orderBy('date')).valueChanges();
   }
 
   ngOnInit() {
     this.logs.subscribe((logs: any) => {
       const dataPoints = [];
-      let y = 0;
-      for (let i = 0; i < 10000; i++) {
-        y += Math.round(5 + Math.random() * (-5 - 5));
-        dataPoints.push({ y });
-      }
+
+      logs.forEach(i => {
+        dataPoints.push({
+          x: this.getDate(i.date),
+          y: i.value
+        });
+      });
+
       const chart = new CanvasJS.Chart('chartContainer', {
         zoomEnabled: true,
         animationEnabled: true,
         exportEnabled: true,
-        title: {
-          text: 'Performance Demo - 10000 DataPoints'
-        },
-        subtitles: [{
-          text: 'Try Zooming and Panning'
-        }],
+        // title: {
+        //   text: 'Performance Demo - 10000 DataPoints'
+        // },
+        // subtitles: [{
+        //   text: 'Try Zooming and Panning'
+        // }],
         data: [
           {
             type: 'area',
