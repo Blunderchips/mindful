@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -33,7 +34,8 @@ export class Tab1Page implements OnInit {
   ];
 
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    public toaster: ToastController
   ) { }
 
   ngOnInit(): void {
@@ -55,5 +57,15 @@ export class Tab1Page implements OnInit {
     this.afs.collection(this.userUid + '_data').add(
       obj
     );
+
+    this.presentToast();
+  }
+
+  async presentToast() {
+    const toast = await this.toaster.create({
+      message: 'Mood saved',
+      duration: 2000
+    });
+    toast.present();
   }
 }
