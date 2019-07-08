@@ -3,23 +3,24 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private afs: AngularFirestore
+    private router: Router
   ) {
     this.initializeApp();
   }
 
   ngOnInit(): void {
-    console.log('bang');
     // this.afs.collection('sfsdf').add({ g: 'adasd' });
   }
 
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.router.navigateByUrl('/splash');
     });
   }
 }

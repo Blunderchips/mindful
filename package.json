@@ -32,6 +32,7 @@
     "canvasjs": "^1.8.1",
     "core-js": "^2.5.4",
     "firebase": "^6.2.4",
+    "node-emoji": "^1.10.0",
     "plotly.js": "^1.48.3",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
