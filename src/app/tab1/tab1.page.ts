@@ -44,9 +44,9 @@ export class Tab1Page implements OnInit {
   postMood(mood: any) {
     let uid = this.afs.createId();
 
-    let obj = {
+    const obj = {
       user: this.userUid,
-      uid: uid,
+      uid,
       mood: mood.mood,
       date: new Date().toISOString(),
       value: mood.value
@@ -54,7 +54,7 @@ export class Tab1Page implements OnInit {
 
     console.log(obj);
 
-    this.afs.collection(this.userUid + '_data').add(
+    this.afs.collection(this.userUid + '_data').doc(uid).set(
       obj
     );
 
