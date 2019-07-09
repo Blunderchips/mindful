@@ -23,6 +23,12 @@ ion-page {
   position: absolute;
   transform: translate(-50%, -50%);
   font-size: 100%;
+
+  width: 100%;
+  height: auto;
+
+  -webkit-align-content: center;
+  align-content: center;
 }
 
 .spline {
@@ -44,4 +50,12 @@ ion-page {
 .full {
   width: 100%;
   height: 100%;
+}
+
+.asd {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }

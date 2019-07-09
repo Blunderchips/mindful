@@ -14,45 +14,45 @@ export class Tab1Page implements OnInit {
     {
       mood: 'ecstatic',
       icon: 'happy',
-      value: 5,
+      value: 3,
       emoji: '🤩',
       colour: 'danger'
     },
     {
       mood: 'Happy',
       icon: 'happy',
-      value: 4,
+      value: 2,
       emoji: '😁',
+      colour: 'danger'
+    },
+    {
+      mood: 'Fine',
+      icon: 'happy',
+      value: 2,
+      emoji: '🙂',
       colour: 'danger'
     },
     {
       mood: 'Meh',
       icon: 'Meh',
-      value: 3,
+      value: 0,
       emoji: '😐',
       colour: 'danger'
     },
     {
       mood: 'sad',
       icon: 'sad',
-      value: 2,
+      value: 1,
       emoji: '😣',
       colour: 'danger'
     },
     {
       mood: 'depressed',
       icon: 'sad',
-      value: 1,
+      value: -2,
       emoji: '😔',
       colour: 'danger'
     }
-    // ,
-    // {
-    //   mood: 'tierd',
-    //   icon: 'sad',
-    //   value: 2,
-    //   emoji: '😴'
-    // }
   ];
 
   constructor(
@@ -89,7 +89,8 @@ export class Tab1Page implements OnInit {
   async presentToast() {
     const toast = await this.toaster.create({
       message: 'Mood saved',
-      duration: 2000
+      duration: 2000,
+      position: 'top'
     });
     toast.present();
   }

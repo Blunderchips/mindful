@@ -8,14 +8,19 @@
 
 <ion-content>
 
-  <div class="moods">
-    <div>
-      <ion-button (click)="postMood(mood)" *ngFor="let mood of moods" size="large" shape="round" color={{mood.colour}}>
-        <!--   <ion-ripple-effect></ion-ripple-effect> -->
-        <!-- <ion-icon name="{{mood.icon}}"></ion-icon> -->
-        {{ mood.emoji }}
-      </ion-button>
-    </div>
+  <img src="https://i.imgur.com/kLzIPaR.png" />
+
+  <br>
+
+  <div class="asd" style="text-align: center;">
+    <ion-button (click)="postMood(mood)" *ngFor="let mood of moods" size="large" shape="round" color={{mood.colour}}
+      style="width:25%; top:50%;">
+      <!--   <ion-ripple-effect></ion-ripple-effect> -->
+      <!-- <ion-icon name="{{mood.icon}}"></ion-icon> -->
+      {{ mood.emoji }}
+    </ion-button>
   </div>
+
+  <br>
 
 </ion-content>
