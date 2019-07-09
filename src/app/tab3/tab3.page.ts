@@ -30,7 +30,7 @@ export class Tab3Page implements OnInit {
         });
       });
 
-      const chart = new CanvasJS.Chart('chartContainer', {
+      const chart = new CanvasJS.Chart('chartContainer1', {
         zoomEnabled: true,
         animationEnabled: true,
         exportEnabled: true,
@@ -61,5 +61,10 @@ export class Tab3Page implements OnInit {
     return date.getFullYear() + '-' + (date.getMonth() + 1)
       + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes()
       + ':' + date.getSeconds();
+  }
+
+  remove(log: { uid: string }) {
+    console.log(log);
+    this.afs.collection(this.userUid + '_data').doc(log.uid).delete();
   }
 }
