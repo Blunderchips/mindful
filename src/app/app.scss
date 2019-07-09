@@ -7,13 +7,16 @@
 
 @import "~bootstrap/scss/bootstrap.scss";
 
+$light: #3880ff;
+$dark: #4c8dff;
+
 ion-content,
 ion-page {
-  background-image: linear-gradient(#4c8dff, #3880ff);
+  background-image: linear-gradient($dark, $light);
 }
 
 .bg-class {
-  --background: linear-gradient(#3880ff, #4c8dff, 100%) !important;
+  --background: linear-gradient($dark, $light, 100%) !important;
 }
 
 .moods {
@@ -58,4 +61,19 @@ ion-page {
   right: 0;
   margin-left: auto;
   margin-right: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  align-content: center;
+}
+
+.q {
+  width: 10%;
+  height: auto;
+  border-style: solid;
+  border-width: 5px;
 }

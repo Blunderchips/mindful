@@ -8,14 +8,15 @@
 
 <ion-content>
 
-  <img src="https://i.imgur.com/kLzIPaR.png" />
+  <img src="{{img}}" class="center" style="margin-top:10%" />
 
   <br>
 
-  <div class="asd" style="text-align: center;">
+  <div class="asd" style="text-align: center;margin-top:25%">
     <ion-button (click)="postMood(mood)" *ngFor="let mood of moods" size="large" shape="round" color={{mood.colour}}
-      style="width:25%; top:50%;">
+      style="width:25%; top:75%;">
       <!--   <ion-ripple-effect></ion-ripple-effect> -->
+
       <!-- <ion-icon name="{{mood.icon}}"></ion-icon> -->
       {{ mood.emoji }}
     </ion-button>
@@ -23,4 +24,9 @@
 
   <br>
 
+  <div class="center asd" style="position: fixed;bottom: 0px;width: 100%;text-align: center;margin-bottom: 5%">
+    <ion-badge *ngFor="let post of past" color={{getColour(post)}} class="q">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+    <ion-badge color="light" class="q">
+      &nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
+  </div>
 </ion-content>

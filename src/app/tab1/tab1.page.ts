@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { ToastController } from '@ionic/angular';
+import { IMG } from '../app.component';
 
 @Component({
   selector: 'app-tab1',
@@ -9,6 +10,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class Tab1Page implements OnInit {
 
+  img = IMG;
+
   userUid = '1234';
   moods = [
     {
@@ -16,35 +19,35 @@ export class Tab1Page implements OnInit {
       icon: 'happy',
       value: 3,
       emoji: '🤩',
-      colour: 'danger'
+      colour: 'primary'
     },
     {
       mood: 'Happy',
       icon: 'happy',
       value: 2,
       emoji: '😁',
-      colour: 'danger'
+      colour: 'secondary'
     },
     {
       mood: 'Fine',
       icon: 'happy',
       value: 2,
       emoji: '🙂',
-      colour: 'danger'
+      colour: 'tertiary'
     },
     {
       mood: 'Meh',
       icon: 'Meh',
       value: 0,
       emoji: '😐',
-      colour: 'danger'
+      colour: 'success'
     },
     {
       mood: 'sad',
       icon: 'sad',
       value: 1,
       emoji: '😣',
-      colour: 'danger'
+      colour: 'warning'
     },
     {
       mood: 'depressed',
@@ -55,6 +58,8 @@ export class Tab1Page implements OnInit {
     }
   ];
 
+  past: any;
+
   constructor(
     private afs: AngularFirestore,
     public toaster: ToastController
@@ -62,8 +67,15 @@ export class Tab1Page implements OnInit {
 
   ngOnInit(): void {
     // this.moods.sort((a, b) => {
-    //   return a.value < b.value;
+    //   return a.value < b.value;s
     // });
+
+    this.afs.collection(this.userUid + '_data', ref => ref.orderBy('date')
+    ).valueChanges().subscribe(asd => {
+      this.past = [];
+      this.past = asd.reverse().slice(0, 5).reverse();
+      // console.log(this.past);
+    });
   }
 
   postMood(mood: any) {
@@ -83,7 +95,8 @@ export class Tab1Page implements OnInit {
       obj
     );
 
-    this.presentToast();
+    // this.presentToast();
+    this.presentToastWithOptions();
   }
 
   async presentToast() {
@@ -93,5 +106,35 @@ export class Tab1Page implements OnInit {
       position: 'top'
     });
     toast.present();
+  }
+
+  async presentToastWithOptions() {
+    const toast = await this.toaster.create({
+      header: 'Toast header',
+      message: 'Click to Close',
+      position: 'bottom',
+      duration: 3000,
+      buttons: [
+        {
+          text: 'Done',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    toast.present();
+  }
+
+  getColour(mood: { mood: string; }) {
+    let rtn = 'danger'
+    this.moods.forEach(i => {
+      if (i.mood === mood.mood) {
+        // console.log(i.mood === mood.mood, i.mood, mood.mood, i.colour);
+        rtn = i.colour;
+      }
+    });
+    return rtn;
   }
 }

@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 
+export const IMG = 'https://i.imgur.com/j04yqq4.png';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'

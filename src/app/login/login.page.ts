@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { IMG } from '../app.component';
 
 @Component({
   selector: 'app-login',
@@ -7,6 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+  logo = IMG;
 
   constructor(
     private router: Router
