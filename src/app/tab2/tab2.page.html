@@ -11,4 +11,40 @@
     <div class="graph" id="chartContainer2" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;">
     </div>
   </div>
+
+  <div>
+    <table class="table table-hover table-fixed">
+
+      <thead>
+        <tr>
+          <th>
+            Date
+          </th>
+          <th>
+            Mood
+          </th>
+          <!-- <th>
+            Delete
+          </th> -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let log of logs">
+          <td>
+            {{ getToString(getDate(log.date)) }}
+          </td>
+          <td>
+            {{ log.mood }}
+          </td>
+          <!-- <td>
+            <ion-fab-button color="danger" (click)="remove(log)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-fab-button>
+          </td> -->
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
 </ion-content>

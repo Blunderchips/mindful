@@ -12,6 +12,9 @@ export class Tab2Page implements OnInit {
 
   userUid = '1234';
 
+  selected = {};
+  logs = [];
+
   constructor(
     public alertController: AlertController,
     private afs: AngularFirestore
@@ -54,11 +57,44 @@ export class Tab2Page implements OnInit {
           startAngle: 240,
           yValueFormatString: '##0.00"%"',
           indexLabel: '{label} {y}',
-          dataPoints
+          dataPoints,
+          click: (evt: any) => { this.click(evt); }
         }]
       });
 
       chart.render();
     });
   }
+
+  click(evt: any) {
+    const { label, exploded } = evt.dataPoint;
+    this.selected[label] = exploded;
+
+    this.afs.collection(this.userUid + '_data').valueChanges().subscribe(logs => {
+
+      this.logs = [];
+
+      logs.forEach((i: any) => {
+        if (this.selected[`${i.mood}`]) {
+          this.logs.push(i);
+        }
+      });
+
+      this.logs.sort((a: { date: string }, b: { date: string }) => {
+        return b.date.localeCompare(a.date);
+      });
+
+    });
+  }
+
+  getDate(ISOString: string): Date {
+    return new Date(ISOString);
+  }
+
+  getToString(date: Date): string {
+    return date.getFullYear() + '-' + (date.getMonth() + 1)
+      + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes()
+      + ':' + date.getSeconds();
+  }
 }
+
