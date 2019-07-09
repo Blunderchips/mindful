@@ -8,23 +8,56 @@
 
 <ion-content>
 
-  <img src="{{img}}" class="center" style="margin-top:10%" />
+  <img src="{{img}}" class="center" style="margin-top:7%" />
 
   <br>
 
-  <div class="asd" style="text-align: center;margin-top:25%">
-    <ion-button (click)="postMood(mood)" *ngFor="let mood of moods" size="large" shape="round" color={{mood.colour}}
-      style="width:25%; top:75%;">
-      <!--   <ion-ripple-effect></ion-ripple-effect> -->
+  <div style="margin-top:0%">
 
-      <!-- <ion-icon name="{{mood.icon}}"></ion-icon> -->
-      {{ mood.emoji }}
-    </ion-button>
+    <div class='ggg'>
+      <h5>
+        &nbsp;&nbsp;&nbsp;Wellness
+      </h5>
+      <div class="asd" style="text-align: center;">
+        <ion-button (click)="postMood(mood, 0)" *ngFor="let mood of moods" size="large" shape="round"
+          color={{mood.colour}} class="buttons">
+          {{ mood.emoji }}
+        </ion-button>
+      </div>
+      <br>
+    </div>
+
+    <div>
+      <h5>
+        &nbsp;&nbsp;&nbsp;Medical
+      </h5>
+      <div class="asd" style="text-align: center;">
+        <ion-button (click)="postMood(mood, 1)" *ngFor="let mood of moods" size="large" shape="round"
+          color={{mood.colour}} class="buttons">
+          {{ mood.emoji }}
+        </ion-button>
+      </div>
+      <br>
+    </div>
+
+    <div>
+      <h5>
+        &nbsp;&nbsp;&nbsp;Financial
+      </h5>
+      <div class="asd" style="text-align: center;">
+        <ion-button (click)="postMood(mood, 2)" *ngFor="let mood of moods" size="large" shape="round"
+          color={{mood.colour}} class="buttons">
+          {{ mood.emoji }}
+        </ion-button>
+      </div>
+      <br>
+    </div>
+
   </div>
 
   <br>
 
-  <div class="center asd" style="position: fixed;bottom: 0px;width: 100%;text-align: center;margin-bottom: 5%">
+  <div class="center asd" style="position: fixed;bottom: 0px;width: 100%;text-align: center;margin-bottom: 3%">
     <ion-badge *ngFor="let post of past" color={{getColour(post)}} class="q">&nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>
     <ion-badge color="light" class="q">
       &nbsp;&nbsp;&nbsp;&nbsp;</ion-badge>

@@ -15,13 +15,6 @@ export class Tab1Page implements OnInit {
   userUid = '1234';
   moods = [
     {
-      mood: 'ecstatic',
-      icon: 'happy',
-      value: 3,
-      emoji: '🤩',
-      colour: 'primary'
-    },
-    {
       mood: 'Happy',
       icon: 'happy',
       value: 2,
@@ -78,7 +71,7 @@ export class Tab1Page implements OnInit {
     });
   }
 
-  postMood(mood: any) {
+  postMood(mood: any, type: number) {
     const uid = this.afs.createId();
 
     const obj = {
@@ -86,7 +79,8 @@ export class Tab1Page implements OnInit {
       uid,
       mood: mood.mood,
       date: new Date().toISOString(),
-      value: mood.value
+      value: mood.value,
+      type
     };
 
     console.log(obj);
@@ -131,7 +125,6 @@ export class Tab1Page implements OnInit {
     let rtn = 'danger'
     this.moods.forEach(i => {
       if (i.mood === mood.mood) {
-        // console.log(i.mood === mood.mood, i.mood, mood.mood, i.colour);
         rtn = i.colour;
       }
     });
