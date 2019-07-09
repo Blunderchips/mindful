@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { IMG } from '../app.component';
 
 @Component({
@@ -51,11 +51,14 @@ export class Tab1Page implements OnInit {
     }
   ];
 
+  last = '';
+
   past: any;
 
   constructor(
     private afs: AngularFirestore,
-    public toaster: ToastController
+    public toaster: ToastController,
+    public alertController: AlertController
   ) { }
 
   ngOnInit(): void {
@@ -89,8 +92,10 @@ export class Tab1Page implements OnInit {
       obj
     );
 
+    this.last = uid;
+
     // this.presentToast();
-    this.presentToastWithOptions();
+    this.presentToastWithOptions(mood, type);
   }
 
   async presentToast() {
@@ -102,18 +107,17 @@ export class Tab1Page implements OnInit {
     toast.present();
   }
 
-  async presentToastWithOptions() {
+  async presentToastWithOptions(mood: any, type: number) {
     const toast = await this.toaster.create({
-      header: 'Toast header',
-      message: 'Click to Close',
+      header: 'Mood saved',
+      message: '',
       position: 'bottom',
       duration: 3000,
       buttons: [
         {
-          text: 'Done',
-          role: 'cancel',
+          text: 'Would you like to make a comment',
           handler: () => {
-            console.log('Cancel clicked');
+            this.presentAlertPrompt({ mood, type });
           }
         }
       ]
@@ -122,7 +126,7 @@ export class Tab1Page implements OnInit {
   }
 
   getColour(mood: { mood: string; }) {
-    let rtn = 'danger'
+    let rtn = 'danger';
     this.moods.forEach(i => {
       if (i.mood === mood.mood) {
         rtn = i.colour;
@@ -130,4 +134,58 @@ export class Tab1Page implements OnInit {
     });
     return rtn;
   }
+
+  async presentAlertPrompt({ mood, type }: {
+    mood: {
+      mood: any;
+      value: any;
+    }; type: number;
+  }) {
+    const alert = await this.alertController.create({
+      header: 'Why do you feel that way?',
+      inputs: [
+        {
+          name: 'input',
+          type: 'text'
+          // placeholder: 'Placeholder 1'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Ok',
+          handler: (data: any) => {
+            console.log('Confirm Ok');
+            console.log(data);
+
+            this.afs.collection(this.userUid + '_data').doc(this.last).delete();
+            const obj = {
+              user: this.userUid,
+              uid: this.last,
+              mood: mood.mood,
+              date: new Date().toISOString(),
+              value: mood.value,
+              type,
+              comment: data.input
+            };
+
+            console.log(obj);
+
+            this.afs.collection(this.userUid + '_data').doc(this.last).set(
+              obj
+            );
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }

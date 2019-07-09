@@ -96,5 +96,9 @@ export class Tab2Page implements OnInit {
       + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes()
       + ':' + date.getSeconds();
   }
+
+  getComment(mood: { comment: string; }): string {
+    return !mood.comment ? '' : mood.comment;
+  }
 }
 
