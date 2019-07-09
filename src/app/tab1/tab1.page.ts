@@ -15,31 +15,36 @@ export class Tab1Page implements OnInit {
       mood: 'ecstatic',
       icon: 'happy',
       value: 5,
-      emoji: '🤩'
+      emoji: '🤩',
+      colour: 'danger'
     },
     {
       mood: 'Happy',
       icon: 'happy',
       value: 4,
-      emoji: '😁'
+      emoji: '😁',
+      colour: 'danger'
     },
     {
       mood: 'Meh',
       icon: 'Meh',
       value: 3,
-      emoji: '😐'
+      emoji: '😐',
+      colour: 'danger'
     },
     {
       mood: 'sad',
       icon: 'sad',
       value: 2,
-      emoji: '😣'
+      emoji: '😣',
+      colour: 'danger'
     },
     {
       mood: 'depressed',
       icon: 'sad',
       value: 1,
-      emoji: '😔'
+      emoji: '😔',
+      colour: 'danger'
     }
     // ,
     // {

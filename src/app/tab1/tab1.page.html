@@ -9,12 +9,12 @@
 <ion-content>
 
   <div class="moods">
-    <div *ngFor="let mood of moods">
-      <ion-fab-button (click)="postMood(mood)">
+    <div>
+      <ion-button (click)="postMood(mood)" *ngFor="let mood of moods" size="large" shape="round" color={{mood.colour}}>
         <!--   <ion-ripple-effect></ion-ripple-effect> -->
         <!-- <ion-icon name="{{mood.icon}}"></ion-icon> -->
         {{ mood.emoji }}
-      </ion-fab-button>
+      </ion-button>
     </div>
   </div>
 
