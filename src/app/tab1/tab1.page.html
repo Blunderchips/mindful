@@ -1,22 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab One
+      Discovery Mindful
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ul class='circle-container'>
-
-    <li *ngFor="let mood of moods">
+  <div class="moods">
+    <div *ngFor="let mood of moods">
       <ion-fab-button (click)="postMood(mood)">
-        <ion-ripple-effect></ion-ripple-effect>
-        <ion-icon name="{{mood.icon}}"></ion-icon>
+        <!--   <ion-ripple-effect></ion-ripple-effect> -->
+        <!-- <ion-icon name="{{mood.icon}}"></ion-icon> -->
+        {{ mood.emoji }}
       </ion-fab-button>
-    </li>
-
-  </ul>
+    </div>
+  </div>
 
 </ion-content>

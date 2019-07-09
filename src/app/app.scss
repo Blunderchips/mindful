@@ -15,3 +15,33 @@ ion-page {
 .bg-class {
   --background: linear-gradient(#3880ff, #4c8dff, 100%) !important;
 }
+
+.moods {
+  margin: 0 auto;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 100%;
+}
+
+.spline {
+  width: 100%;
+  height: auto;
+
+  margin: 0 auto;
+  left: -40%;
+  top: 50%;
+  position: absolute;
+
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+
+.full {
+  width: 100%;
+  height: 100%;
+}

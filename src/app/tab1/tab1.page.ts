@@ -12,25 +12,42 @@ export class Tab1Page implements OnInit {
   userUid = '1234';
   moods = [
     {
-      mood: 'happy',
+      mood: 'ecstatic',
       icon: 'happy',
-      value: 5
+      value: 5,
+      emoji: '🤩'
+    },
+    {
+      mood: 'Happy',
+      icon: 'happy',
+      value: 4,
+      emoji: '😁'
+    },
+    {
+      mood: 'Meh',
+      icon: 'Meh',
+      value: 3,
+      emoji: '😐'
     },
     {
       mood: 'sad',
       icon: 'sad',
-      value: 3
+      value: 2,
+      emoji: '😣'
     },
     {
       mood: 'depressed',
       icon: 'sad',
-      value: 1
-    },
-    {
-      mood: 'tierd',
-      icon: 'sad',
-      value: 2
+      value: 1,
+      emoji: '😔'
     }
+    // ,
+    // {
+    //   mood: 'tierd',
+    //   icon: 'sad',
+    //   value: 2,
+    //   emoji: '😴'
+    // }
   ];
 
   constructor(
@@ -39,10 +56,13 @@ export class Tab1Page implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.moods.sort((a, b) => {
+    //   return a.value < b.value;
+    // });
   }
 
   postMood(mood: any) {
-    let uid = this.afs.createId();
+    const uid = this.afs.createId();
 
     const obj = {
       user: this.userUid,

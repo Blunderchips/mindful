@@ -25,7 +25,7 @@ export class Tab3Page implements OnInit {
 
       logs.forEach((i: { date: string; value: number; }) => {
         dataPoints.push({
-          x: this.getDate(i.date),
+          // x: this.getDate(i.date),
           y: i.value
         });
       });
@@ -45,7 +45,7 @@ export class Tab3Page implements OnInit {
             type: 'spline',
             dataPoints,
             markerSize: 5,
-            xValueType: 'dateTime'
+            // xValueType: 'dateTime'
           }]
       });
 
