@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from '../canvasjs.min';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { DataServiceService } from '../data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab3',
@@ -16,6 +17,7 @@ export class Tab3Page implements OnInit {
   constructor(
     private afs: AngularFirestore,
     private date: DataServiceService,
+    private router: Router
   ) {
     this.date.currentMessage.subscribe(user => {
       this.userUid = user;
@@ -27,6 +29,9 @@ export class Tab3Page implements OnInit {
   ngOnInit() {
 
     this.date.currentMessage.subscribe(user => {
+      if (!user) {
+        this.router.navigateByUrl('/login');
+      }
 
       this.userUid = user;
 

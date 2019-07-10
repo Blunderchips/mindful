@@ -3,6 +3,7 @@ import { AngularFirestore } from 'angularfire2/firestore';
 import { ToastController, AlertController } from '@ionic/angular';
 import { IMG } from '../app.component';
 import { DataServiceService } from '../data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -60,7 +61,8 @@ export class Tab1Page implements OnInit {
     private afs: AngularFirestore,
     public toaster: ToastController,
     public alertController: AlertController,
-    private date: DataServiceService
+    private date: DataServiceService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +71,11 @@ export class Tab1Page implements OnInit {
     // });
 
     this.date.currentMessage.subscribe(user => {
+      if (!user) {
+        this.router.navigateByUrl('/login');
+      }
+
+
       this.userUid = user;
 
       this.afs.collection(this.userUid + '_data', ref => ref.orderBy('date')

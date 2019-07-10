@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import * as CanvasJS from '../canvasjs.min';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { DataServiceService } from '../data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -19,12 +20,16 @@ export class Tab2Page implements OnInit {
   constructor(
     public alertController: AlertController,
     private afs: AngularFirestore,
-    private date: DataServiceService
+    private date: DataServiceService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
 
     this.date.currentMessage.subscribe(user => {
+      if (!user) {
+        this.router.navigateByUrl('/login');
+      }
 
       this.userUid = user;
 

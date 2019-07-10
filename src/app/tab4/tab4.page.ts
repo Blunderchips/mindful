@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { DataServiceService } from '../data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab4',
@@ -16,37 +17,22 @@ export class Tab4Page implements OnInit {
   c = 0;
 
   products = {
-    Bank: {
 
-    },
-    'Medical Aid': {
-
-    },
-    'Gap Cover': {
-
-    },
-    'Life_Insurance': {
-
-    },
-    'Investment': {
-
-    },
-    'Car and Home': {
-
-    },
-    'Vitality': {
-
-    }
   };
 
   suggestions = [];
 
   constructor(
     private afs: AngularFirestore,
-    private date: DataServiceService
+    private date: DataServiceService,
+    private router: Router
   ) {
 
     this.date.currentMessage.subscribe(user => {
+      if (!user) {
+        this.router.navigateByUrl('/login');
+      }
+
       this.userUid = user;
 
       this.afs.collection(this.userUid + '_data').valueChanges().subscribe(data => {
@@ -77,15 +63,15 @@ export class Tab4Page implements OnInit {
   getSuggestion() {
     const rtn = [];
 
-    if (this.a > 0) {
-      rtn.push(this.products.Vitality);
-    }
-    if (this.b > 0) {
-      rtn.push(this.products.Life_Insurance);
-    }
-    if (this.c > 0) {
-      rtn.push(this.products.Investment);
-    }
+    // if (this.a > 0) {
+    //   rtn.push(this.products.Vitality);
+    // }
+    // if (this.b > 0) {
+    //   rtn.push(this.products.Life_Insurance);
+    // }
+    // if (this.c > 0) {
+    //   rtn.push(this.products.Investment);
+    // }
 
     console.log(rtn);
     return rtn;
