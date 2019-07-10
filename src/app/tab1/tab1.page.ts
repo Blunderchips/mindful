@@ -38,14 +38,14 @@ export class Tab1Page implements OnInit {
       colour: 'success'
     },
     {
-      mood: 'sad',
+      mood: 'Anxious',
       icon: 'sad',
       value: 1,
       emoji: '😣',
       colour: 'warning'
     },
     {
-      mood: 'depressed',
+      mood: 'Depressed',
       icon: 'sad',
       value: -2,
       emoji: '😔',
