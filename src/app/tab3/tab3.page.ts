@@ -45,7 +45,7 @@ export class Tab3Page implements OnInit {
           });
         });
 
-        console.log(dataPoints);
+        // console.log(dataPoints);
 
         const chart = new CanvasJS.Chart('chartContainer1', {
           zoomEnabled: true,
