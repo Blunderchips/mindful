@@ -9,8 +9,9 @@
 <ion-content>
   <ion-card *ngFor="let i of getSuggestion()">
     <ion-item>
-      <ion-icon name="pin" slot="start"></ion-icon>
-      <ion-label>{{ i.title }}</ion-label>
+      <!-- <ion-icon name="pin" slot="start"></ion-icon> -->
+      <img src={{i.img}} alt={{i.title}} style="width: 32px; height: 32xp">
+      <ion-label>&nbsp;&nbsp;{{ i.title }}</ion-label>
       <ion-button fill="outline" slot="end" (click)="open(i.url)">View</ion-button>
     </ion-item>
 
