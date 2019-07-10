@@ -129,7 +129,7 @@ export class Tab4Page implements OnInit {
         break;
     }
 
-    return rtn.sort(() => Math.random() - 0.5);;
+    return rtn.sort(() => Math.random() - 0.5);
   }
 
   isMax(n: number): boolean {
