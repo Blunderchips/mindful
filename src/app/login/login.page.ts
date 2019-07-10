@@ -35,7 +35,7 @@ export class LoginPage implements OnInit {
       return;
     }
     this.data.changeMessage(this.name);
-    console.log('login');
+    console.log('login', environment.production);
 
     if (environment.production) {
       this.router.navigateByUrl('/splash');
