@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { ToastController, AlertController } from '@ionic/angular';
 import { IMG } from '../app.component';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-tab1',
@@ -58,19 +59,24 @@ export class Tab1Page implements OnInit {
   constructor(
     private afs: AngularFirestore,
     public toaster: ToastController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private date: DataServiceService
   ) { }
 
   ngOnInit(): void {
     // this.moods.sort((a, b) => {
-    //   return a.value < b.value;s
+    //   return a.value < b.value;sF
     // });
 
-    this.afs.collection(this.userUid + '_data', ref => ref.orderBy('date')
-    ).valueChanges().subscribe(asd => {
-      this.past = [];
-      this.past = asd.reverse().slice(0, 5).reverse();
-      // console.log(this.past);
+    this.date.currentMessage.subscribe(user => {
+      this.userUid = user;
+
+      this.afs.collection(this.userUid + '_data', ref => ref.orderBy('date')
+      ).valueChanges().subscribe(asd => {
+        this.past = [];
+        this.past = asd.reverse().slice(0, 5).reverse();
+        // console.log(this.past);
+      });
     });
   }
 

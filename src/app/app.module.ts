@@ -15,6 +15,7 @@ import { firebaseConfig } from './credentials';
 
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
+import { CookieModule } from 'ngx-cookie';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 

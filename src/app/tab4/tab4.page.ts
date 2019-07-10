@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-tab4',
@@ -41,23 +42,29 @@ export class Tab4Page implements OnInit {
   suggestions = [];
 
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private date: DataServiceService
   ) {
-    this.afs.collection(this.userUid + '_data').valueChanges().subscribe(data => {
-      data.forEach((i: any) => {
-        switch (i.type) {
-          case 0:
-            this.a++;
-            break;
-          case 1:
-            this.b++;
-            break;
-          case 2:
-            this.c++;
-            break;
-        }
+
+    this.date.currentMessage.subscribe(user => {
+      this.userUid = user;
+
+      this.afs.collection(this.userUid + '_data').valueChanges().subscribe(data => {
+        data.forEach((i: any) => {
+          switch (i.type) {
+            case 0:
+              this.a++;
+              break;
+            case 1:
+              this.b++;
+              break;
+            case 2:
+              this.c++;
+              break;
+          }
+        });
       });
-    });
+    })
   }
 
   ngOnInit() {

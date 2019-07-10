@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from '../canvasjs.min';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-tab3',
@@ -13,44 +14,52 @@ export class Tab3Page implements OnInit {
   userUid = '1234';
 
   constructor(
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private date: DataServiceService,
   ) {
     this.logs = this.afs.collection(this.userUid + '_data',
       ref => ref.orderBy('date')).valueChanges();
   }
 
   ngOnInit() {
-    this.logs.subscribe((logs: any) => {
-      const dataPoints = [];
 
-      logs.forEach((i: { date: string; value: number; }) => {
-        dataPoints.push({
-          // x: this.getDate(i.date),
-          y: i.value
+    this.date.currentMessage.subscribe(user => {
+
+      this.userUid = user;
+
+      this.logs.subscribe((logs: any) => {
+        const dataPoints = [];
+
+        logs.forEach((i: { date: string; value: number; }) => {
+          dataPoints.push({
+            // x: this.getDate(i.date),
+            y: i.value
+          });
         });
-      });
 
-      const chart = new CanvasJS.Chart('chartContainer1', {
-        zoomEnabled: true,
-        animationEnabled: true,
-        exportEnabled: true,
-        // title: {
-        //   text: 'Performance Demo - 10000 DataPoints'
-        // },
-        // subtitles: [{
-        //   text: 'Try Zooming and Panning'
-        // }],
-        data: [
-          {
-            type: 'spline',
-            dataPoints,
-            markerSize: 5,
-            // xValueType: 'dateTime'
-          }]
-      });
+        const chart = new CanvasJS.Chart('chartContainer1', {
+          zoomEnabled: true,
+          animationEnabled: true,
+          exportEnabled: true,
+          // title: {
+          //   text: 'Performance Demo - 10000 DataPoints'
+          // },
+          // subtitles: [{
+          //   text: 'Try Zooming and Panning'
+          // }],
+          data: [
+            {
+              type: 'spline',
+              dataPoints,
+              markerSize: 5,
+              // xValueType: 'dateTime'
+            }]
+        });
 
-      chart.render();
+        chart.render();
+      });
     });
+
   }
 
   getDate(ISOString: string): Date {
