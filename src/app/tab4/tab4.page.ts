@@ -15,7 +15,7 @@ export class Tab4Page implements OnInit {
   c = 0;
 
   products = {
-    'Bank': {
+    Bank: {
 
     },
     'Medical Aid': {
@@ -24,7 +24,7 @@ export class Tab4Page implements OnInit {
     'Gap Cover': {
 
     },
-    'Life Insurance': {
+    'Life_Insurance': {
 
     },
     'Investment': {
@@ -70,6 +70,17 @@ export class Tab4Page implements OnInit {
   getSuggestion() {
     const rtn = [];
 
+    if (this.a > 0) {
+      rtn.push(this.products.Vitality);
+    }
+    if (this.b > 0) {
+      rtn.push(this.products.Life_Insurance);
+    }
+    if (this.c > 0) {
+      rtn.push(this.products.Investment);
+    }
+
+    console.log(rtn);
     return rtn;
   }
 
