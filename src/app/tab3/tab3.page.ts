@@ -17,8 +17,11 @@ export class Tab3Page implements OnInit {
     private afs: AngularFirestore,
     private date: DataServiceService,
   ) {
-    this.logs = this.afs.collection(this.userUid + '_data',
-      ref => ref.orderBy('date')).valueChanges();
+    this.date.currentMessage.subscribe(user => {
+      this.userUid = user;
+      this.logs = this.afs.collection(this.userUid + '_data',
+        ref => ref.orderBy('date')).valueChanges();
+    });
   }
 
   ngOnInit() {
@@ -36,6 +39,8 @@ export class Tab3Page implements OnInit {
             y: i.value
           });
         });
+
+        console.log(dataPoints);
 
         const chart = new CanvasJS.Chart('chartContainer1', {
           zoomEnabled: true,
