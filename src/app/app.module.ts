@@ -15,6 +15,7 @@ import { firebaseConfig } from './credentials';
 
 import * as PlotlyJS from 'plotly.js/dist/plotly.js';
 import { PlotlyModule } from 'angular-plotly.js';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 PlotlyModule.plotlyjs = PlotlyJS;
 
@@ -32,7 +33,8 @@ PlotlyModule.plotlyjs = PlotlyJS;
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    InAppBrowser
   ],
   bootstrap: [AppComponent]
 })
