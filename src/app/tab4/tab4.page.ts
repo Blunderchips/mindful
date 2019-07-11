@@ -29,7 +29,7 @@ export class Tab4Page implements OnInit {
       title: 'Medical Aid',
       // tslint:disable-next-line: max-line-length
       descriptoin: 'One of the strategic priorities is to drive value-based healthcare, a delivery model which places members at the centre of care. In such a model, providers are reimbursed based on health outcomes, not inputs. This ensures that it is the health results that matter, not the volume of services delivered. This approach gives our members access to programmes and providers that are committed to continuous improvement in quality healthcare.  Through Discovery Health, you will be deeply engaged in many quality of care initiatives and ongoing monitoring to ensure our members have access to the safest, most efficient healthcare available in South Africa. The scheme also empowers our members with information that is relevant to their needs.',
-      img: '',
+      img: 'https://imgur.com/0saSvK0.png',
       url: 'https://www.discovery.co.za/medical-aid/our-medical-aid-plans'
     },
     life: {
